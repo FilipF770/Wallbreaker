@@ -19,9 +19,9 @@ namespace Wallbreaker
 		// Grafika na PictureBoxu
 		Graphics mobjPredniPlatno;
 
-		// Souřadnice kuličky
-		int mintKulickaX, mintKulickaY;
-		
+		// Kulicka
+		clsKulicka mobjKulicka;
+
 		// Konstruktor
 		public Form1 ()
 		{
@@ -42,11 +42,11 @@ namespace Wallbreaker
 			mobjBtmp = new Bitmap (pbPlatno.Width, pbPlatno.Height);
 			mobjPlatnoNaPozadi = Graphics.FromImage (mobjBtmp);
 
-			// Nastavení kuličky
-			mintKulickaX = mintKulickaY = 10;
+			// Vytvořit kuličku
+			mobjKulicka = new clsKulicka (50, 50, 2, 10, mobjPlatnoNaPozadi);
 
 			// Nastavení Timeru pro překreslení
-			tmrRedraw.Interval = 500;
+			tmrRedraw.Interval = 5;
 			tmrRedraw.Enabled = true;
 		}
 
@@ -62,13 +62,15 @@ namespace Wallbreaker
 		/// <param name="e"></param>
 		private void tmrRedraw_Tick (object sender, EventArgs e)
 		{
-			// Nakreslení kolečka
-			mobjPlatnoNaPozadi.FillEllipse (Brushes.Green, mintKulickaX, mintKulickaY, 30, 30);
+			// Vymazat
+			mobjPlatnoNaPozadi.Clear (Color.White);
 
+			// Nakresli kolečko
+			mobjKulicka.Vykreslit ();
+			
 			// Posun kuličky
-			mintKulickaX = mintKulickaX + 5;
-			mintKulickaY = mintKulickaY + 5;
-
+			mobjKulicka.Posunout ();
+			
 			// Nakopírování obrázku na PictureBox
 			mobjPredniPlatno.DrawImage (mobjBtmp, 0, 0);
 		}
