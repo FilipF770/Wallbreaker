@@ -30,7 +30,6 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.pbPlatno = new System.Windows.Forms.PictureBox();
-			this.btTest = new System.Windows.Forms.Button();
 			this.tmrRedraw = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.pbPlatno)).BeginInit();
 			this.SuspendLayout();
@@ -41,19 +40,9 @@
 			this.pbPlatno.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pbPlatno.Location = new System.Drawing.Point(12, 12);
 			this.pbPlatno.Name = "pbPlatno";
-			this.pbPlatno.Size = new System.Drawing.Size(525, 426);
+			this.pbPlatno.Size = new System.Drawing.Size(611, 426);
 			this.pbPlatno.TabIndex = 0;
 			this.pbPlatno.TabStop = false;
-			// 
-			// btTest
-			// 
-			this.btTest.Location = new System.Drawing.Point(584, 12);
-			this.btTest.Name = "btTest";
-			this.btTest.Size = new System.Drawing.Size(85, 27);
-			this.btTest.TabIndex = 1;
-			this.btTest.Text = "button1";
-			this.btTest.UseVisualStyleBackColor = true;
-			this.btTest.Click += new System.EventHandler(this.btTest_Click);
 			// 
 			// tmrRedraw
 			// 
@@ -64,7 +53,6 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.btTest);
 			this.Controls.Add(this.pbPlatno);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.MaximizeBox = false;
@@ -79,7 +67,6 @@
 		#endregion
 
 		private System.Windows.Forms.PictureBox pbPlatno;
-		private System.Windows.Forms.Button btTest;
 		private System.Windows.Forms.Timer tmrRedraw;
 	}
 }

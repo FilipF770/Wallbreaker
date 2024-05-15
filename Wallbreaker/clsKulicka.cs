@@ -16,6 +16,7 @@ namespace Wallbreaker
 		int mintKulickaX, mintKulickaY;
 		int mintKulickaPosunX, mintKulickaPosunY;
 		int mintKulickaPolomer;
+		Brush mobjBrush;
 
 		//-----------------------------------------
 		// Konstruktor
@@ -27,8 +28,24 @@ namespace Wallbreaker
 			mintKulickaPosunX = intKulickaPosun;
 			mintKulickaPosunY = intKulickaPosun;
 			mintKulickaPolomer = intKulickaPolomer;
+			mobjBrush = Brushes.Green;
 
 			mobjPlatno = objPlatno;
+		}
+
+		/// <summary>
+		/// Nastavení barvy štětce kuličky
+		/// </summary>
+		public Brush StetecKulicky
+		{
+			get
+			{ 
+				return mobjBrush; 
+			}
+			set 
+			{
+				mobjBrush = value; 
+			}
 		}
 
 		//-----------------------------------------
@@ -36,7 +53,7 @@ namespace Wallbreaker
 		//-----------------------------------------
 		public void Vykreslit()
 		{
-			mobjPlatno.FillEllipse (Brushes.Green, mintKulickaX, mintKulickaY, mintKulickaPolomer, mintKulickaPolomer);
+			mobjPlatno.FillEllipse (mobjBrush, mintKulickaX, mintKulickaY, mintKulickaPolomer, mintKulickaPolomer);
 		}
 
 		//-----------------------------------------
