@@ -50,6 +50,38 @@ namespace Wallbreaker
 			}
 		}
 
+		/// <summary>
+		/// Vrací obrysový objekt
+		/// </summary>
+		public Rectangle rectObrys
+		{
+			get
+			{
+				Rectangle lobjObrys;
+
+				lobjObrys = new Rectangle (mintCihlaX, mintCihlaY, mintCihlaSirka, mintCihlaVyska);
+
+				// Když není vidět, vrací nulový obdélník
+				if (mblIsVisible == false)
+				{
+					lobjObrys = new Rectangle (0, 0, 0, 0);
+				}
+
+				return lobjObrys;
+			}
+		}
+
+		/// <summary>
+		/// Nastavení viditelnosti cihly
+		/// </summary>
+		public bool blVisible
+		{
+			set
+			{
+				mblIsVisible = value;
+			}
+		}
+
 		//-----------------------------------------
 		// Vykreslení Cihly
 		//-----------------------------------------

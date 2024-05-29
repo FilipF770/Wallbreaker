@@ -51,7 +51,7 @@ namespace Wallbreaker
 			mobjPlatnoNaPozadi = Graphics.FromImage (mobjBtmp);
 
 			// Vytvořit kuličku
-			mobjKulicka = new clsKulicka (50, 50, 2, 10, mobjPlatnoNaPozadi);
+			mobjKulicka = new clsKulicka (50, 200, 2, 10, mobjPlatnoNaPozadi);
 			mobjKulicka.StetecKulicky = Brushes.Red;
 
 			// Vytvoření cihel
@@ -100,6 +100,17 @@ namespace Wallbreaker
 			// Vykreslit cihly
 			for (int i = 0; i < mintPocetCihel; i++)
 			{
+				// Test kolize s kuličkou
+				if (true == TestKolizeCihlaKulicka (mobjKulicka.rectObrys, mobjCihly [i].rectObrys))
+				{
+					// Cihla není vidět
+					mobjCihly [i].blVisible = false;
+
+					// Změna pohybu kuličky
+					mobjKulicka.ZmenPohyb ();
+				}
+
+				// Vykreslení cihel
 				mobjCihly [i].Vykreslit ();
 			}
 			
@@ -108,6 +119,27 @@ namespace Wallbreaker
 			
 			// Nakopírování obrázku na PictureBox
 			mobjPredniPlatno.DrawImage (mobjBtmp, 0, 0);
+		}
+
+		/// <summary>
+		/// Test kolize cihly a kuličky
+		/// </summary>
+		/// <returns></returns>
+		private bool TestKolizeCihlaKulicka (Rectangle objRectangleKulicka, Rectangle objRectangleCihla)
+		{
+			Rectangle lobjPrekryv;
+
+			// Výpočet překryvu
+			lobjPrekryv = Rectangle.Intersect (objRectangleKulicka, objRectangleCihla);
+
+			// Test zda existuje překryvný obdélník
+			if (lobjPrekryv.Width == 0 && lobjPrekryv.Height == 0)
+			{
+				return false;
+			}
+			
+			// Objekty se pekrývají
+			return true;
 		}
 	}
 }

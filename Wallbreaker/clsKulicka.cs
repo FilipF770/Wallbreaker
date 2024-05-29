@@ -48,12 +48,35 @@ namespace Wallbreaker
 			}
 		}
 
+		/// <summary>
+		/// Vrací obrysový objekt
+		/// </summary>
+		public Rectangle rectObrys
+		{
+			get
+			{
+				Rectangle lobjObrys;
+
+				lobjObrys = new Rectangle (mintKulickaX, mintKulickaY, mintKulickaPolomer, mintKulickaPolomer);
+				
+				return lobjObrys;
+			}
+		}
+
 		//-----------------------------------------
 		// Vykreslení kuličky
 		//-----------------------------------------
 		public void Vykreslit()
 		{
 			mobjPlatno.FillEllipse (mobjBrush, mintKulickaX, mintKulickaY, mintKulickaPolomer, mintKulickaPolomer);
+		}
+
+		//-----------------------------------------
+		// Změna směru po nárazu
+		//-----------------------------------------
+		public void ZmenPohyb ()
+		{
+			mintKulickaPosunY = mintKulickaPosunY * (-1);
 		}
 
 		//-----------------------------------------

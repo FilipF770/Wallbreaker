@@ -40,7 +40,7 @@
 			this.pbPlatno.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pbPlatno.Location = new System.Drawing.Point(12, 12);
 			this.pbPlatno.Name = "pbPlatno";
-			this.pbPlatno.Size = new System.Drawing.Size(611, 426);
+			this.pbPlatno.Size = new System.Drawing.Size(575, 426);
 			this.pbPlatno.TabIndex = 0;
 			this.pbPlatno.TabStop = false;
 			// 
@@ -55,6 +55,7 @@
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.pbPlatno);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+			this.KeyPreview = true;
 			this.MaximizeBox = false;
 			this.Name = "Form1";
 			this.Text = "Wall Breaker";
