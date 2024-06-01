@@ -28,11 +28,17 @@ namespace Wallbreaker
 		const int mintPrvniCihlyX = 10, mintPrvniCihlyY = 10, mintPrvniCihlyMezera = 5;
 		const int mintSirkaCihly = 50, mintVyskaCihly = 20;
 
+		// Deska
+		clsDeska mobjDeska;
+
 		// Konstruktor
 		public Form1 ()
 		{
 			InitializeComponent ();
 		}
+
+		
+
 
 		/// <summary>
 		/// Nahrání formu do paměti
@@ -77,6 +83,9 @@ namespace Wallbreaker
 				}
 			}
 
+			// Vytvoření desky
+			mobjDeska = new clsDeska (240, 400, 90, 10, mobjPlatnoNaPozadi);
+
 			// Nastavení Timeru pro překreslení
 			tmrRedraw.Interval = 5;
 			tmrRedraw.Enabled = true;
@@ -97,6 +106,9 @@ namespace Wallbreaker
 			// Nakresli kolečko
 			mobjKulicka.Vykreslit ();
 
+			// Nakresli desku
+			mobjDeska.Vykreslit ();
+
 			// Vykreslit cihly
 			for (int i = 0; i < mintPocetCihel; i++)
 			{
@@ -116,6 +128,15 @@ namespace Wallbreaker
 			
 			// Posun kuličky
 			mobjKulicka.Posunout ();
+
+			// Pohyb desky
+
+			// Test kolize desky s kuličkou
+			if (TestKolizeDeskaKulicka (mobjKulicka.rectObrys, mobjDeska.rectObrys) == true)
+			{
+				mobjKulicka.ZmenPohyb ();
+			}
+			
 			
 			// Nakopírování obrázku na PictureBox
 			mobjPredniPlatno.DrawImage (mobjBtmp, 0, 0);
@@ -141,5 +162,30 @@ namespace Wallbreaker
 			// Objekty se pekrývají
 			return true;
 		}
+
+		/// <summary>
+		/// Test kolize kuličky a desky
+		/// </summary>
+		/// <param name="objRectangleKulicka"></param>
+		/// <param name="objRectangleDeska"></param>
+		/// <returns></returns>
+		private bool TestKolizeDeskaKulicka (Rectangle objRectangleKulicka, Rectangle objRectangleDeska)
+		{
+			Rectangle lobjPrekryv;
+
+			// Výpočet překryvu
+			lobjPrekryv = Rectangle.Intersect (objRectangleKulicka, objRectangleDeska);
+
+			// Test, jestli existuje překryvný obdélník
+			if (lobjPrekryv.Width == 0 && lobjPrekryv.Height == 0)
+			{
+				return false;
+			}
+
+			// Objekty se překrývají
+			return true;
+		}
+
+		
 	}
 }

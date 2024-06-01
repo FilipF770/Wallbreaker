@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsCihla.cs" />
+    <Compile Include="clsDeska.cs" />
     <Compile Include="clsKulicka.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
