@@ -109,6 +109,7 @@ namespace Wallbreaker
 		/// <param name="e"></param>
 		private void tmrRedraw_Tick (object sender, EventArgs e)
 		{
+			// Lokální proměnná pro viditelnost cihel
 			bool lblSameVisible = false;
 		
 			// Vymazat
@@ -125,6 +126,8 @@ namespace Wallbreaker
 			{
 				mobjDeska.Posun ();
 			}
+
+
 
 			// Vykreslit cihly
 			for (int i = 0; i < mintPocetCihel; i++)
@@ -236,11 +239,31 @@ namespace Wallbreaker
 				{
 					case Keys.Left:
 						mobjDeska.Doleva ();
-						mblMackam = true;
+
+						// Zabrání desce odjet vlevo
+						if (mobjDeska.pintDeskaX < 0)
+						{
+							mblMackam = false;
+						}
+						else
+						{
+							mblMackam = true;
+						}
+
 						break;
+
 					case Keys.Right:
 						mobjDeska.Doprava ();
-						mblMackam = true;
+
+						// Zabrání desce odjet vpravo
+						if (mobjDeska.pintDeskaX + mobjDeska.pintDeskaSirka > mobjPredniPlatno.VisibleClipBounds.Width)
+						{
+							mblMackam = false;
+						}
+						else
+						{
+							mblMackam = true;
+						}
 						break;
 				}
 			}
@@ -266,7 +289,7 @@ namespace Wallbreaker
 		/// </summary>
 		public void KonecHryProhra()
 		{
-			MessageBox.Show ("Konec hry! Prohrál jsi.");
+			MessageBox.Show ("Konec hry! Prohra.");
 		}
 
 		/// <summary>
@@ -274,7 +297,7 @@ namespace Wallbreaker
 		/// </summary>
 		public void KonecHryVyhra ()
 		{
-			MessageBox.Show ("Konec hry! Vyhrál jsi.");
+			MessageBox.Show ("Konec hry! Výhra.");
 			tmrRedraw.Enabled = false;
 		}
 	}

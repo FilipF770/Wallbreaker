@@ -20,7 +20,7 @@ namespace Wallbreaker
 		Brush mobjBrush;
 
 		// Souřadnice pro vnější použití
-		public int pintDeskaX;
+		public int pintDeskaX, pintDeskaSirka;
 
 		// Pohyb desky
 		int mintDeskaPosun;
@@ -36,7 +36,7 @@ namespace Wallbreaker
 		{ 
 			mintDeskaX = intDeskaX;
 			mintDeskaY = intDeskaY;
-			mintDeskaSirka = intDeskaSirka;
+			pintDeskaSirka = mintDeskaSirka = intDeskaSirka;
 			mintDeskaVyska = intDeskaVyska;
 			mintDeskaPosun = intDeskaPosun;
 			mobjBrush = Brushes.Green;
@@ -104,9 +104,6 @@ namespace Wallbreaker
 			{
 				mintDeskaPosun = mintDeskaPosun * (-1);
 			}
-
-			
-
 		}
 
 		/// <summary>
@@ -119,55 +116,6 @@ namespace Wallbreaker
 				mintDeskaPosun = mintDeskaPosun * (-1);
 			}
 		}
-		/// <summary>
-		/// Přístup k souřadnicím pro zbytek programu
-		/// </summary>
-		/*public int X
-		{
-			get
-			{
-				return mintDeskaX;
-			}
-			set
-			{
-				mintDeskaX = value;
-			}
-		}
-
-		public int Y
-		{
-			get
-			{
-				return mintDeskaY;
-			}
-			set
-			{
-				mintDeskaY = value;
-			}
-		}
-
-		public int Sirka
-		{
-			get
-			{
-				return mintDeskaSirka;
-			}
-			set
-			{
-				mintDeskaSirka = value;
-			}
-		}
-
-		public int Vyska
-		{
-			get
-			{
-				return mintDeskaVyska;
-			}
-			set
-			{
-				mintDeskaVyska = value;
-			}
-		}*/
+		
 	}
 }
