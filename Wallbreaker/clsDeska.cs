@@ -95,6 +95,9 @@ namespace Wallbreaker
 			pintDeskaX = mintDeskaX;
 		}
 
+		/// <summary>
+		/// Pohyb doleva
+		/// </summary>
 		public void Doleva()
 		{
 			if (mintDeskaPosun > 0)
@@ -106,6 +109,9 @@ namespace Wallbreaker
 
 		}
 
+		/// <summary>
+		/// Pohyb doprava
+		/// </summary>
 		public void Doprava ()
 		{
 			if (mintDeskaPosun < 0)
