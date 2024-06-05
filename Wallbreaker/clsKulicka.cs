@@ -18,6 +18,9 @@ namespace Wallbreaker
 		int mintKulickaPolomer;
 		Brush mobjBrush;
 
+		// Boolean pro zastavení hry
+		public bool tmrStop = false;
+
 		//-----------------------------------------
 		// Konstruktor
 		//-----------------------------------------
@@ -90,6 +93,7 @@ namespace Wallbreaker
 			if ((mintKulickaY + mintKulickaPolomer) > mobjPlatno.VisibleClipBounds.Height)
 			{
 				mintKulickaPosunY = mintKulickaPosunY * (-1);
+				tmrStop = true;
 			}
 
 			if ((mintKulickaX + mintKulickaPolomer) > mobjPlatno.VisibleClipBounds.Width)

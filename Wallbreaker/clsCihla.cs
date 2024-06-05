@@ -76,6 +76,11 @@ namespace Wallbreaker
 		/// </summary>
 		public bool blVisible
 		{
+			get
+			{ 
+				return mblIsVisible; 
+			} 
+		
 			set
 			{
 				mblIsVisible = value;

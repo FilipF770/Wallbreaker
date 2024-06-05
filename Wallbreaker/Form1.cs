@@ -31,6 +31,12 @@ namespace Wallbreaker
 		// Deska
 		clsDeska mobjDeska;
 
+		// Mačkám šipky
+		public bool mblMackam;
+
+		// Výhra
+		//bool mblWin;
+
 		// Konstruktor
 		public Form1 ()
 		{
@@ -84,14 +90,17 @@ namespace Wallbreaker
 			}
 
 			// Vytvoření desky
-			mobjDeska = new clsDeska (240, 400, 90, 10, mobjPlatnoNaPozadi);
+			mobjDeska = new clsDeska (240, 400, 90, 10, 5, mobjPlatnoNaPozadi);
 
 			// Nastavení Timeru pro překreslení
 			tmrRedraw.Interval = 5;
 			tmrRedraw.Enabled = true;
+			//mblWin = false;
 		}
 
-		
+
+
+
 
 		/// <summary>
 		/// Překreslení obrazu
@@ -100,6 +109,8 @@ namespace Wallbreaker
 		/// <param name="e"></param>
 		private void tmrRedraw_Tick (object sender, EventArgs e)
 		{
+			bool lblSameVisible = false;
+		
 			// Vymazat
 			mobjPlatnoNaPozadi.Clear (Color.White);
 
@@ -108,6 +119,12 @@ namespace Wallbreaker
 
 			// Nakresli desku
 			mobjDeska.Vykreslit ();
+
+			// Pokud mačkám klávesu, plošina se posune
+			if (mblMackam == true)
+			{
+				mobjDeska.Posun ();
+			}
 
 			// Vykreslit cihly
 			for (int i = 0; i < mintPocetCihel; i++)
@@ -120,16 +137,26 @@ namespace Wallbreaker
 
 					// Změna pohybu kuličky
 					mobjKulicka.ZmenPohyb ();
+
+				}
+
+				// Test na viditelnost všech cihel
+				if (mobjCihly [i].blVisible == true)
+				{
+					lblSameVisible = true;
 				}
 
 				// Vykreslení cihel
 				mobjCihly [i].Vykreslit ();
 			}
 			
+			if (lblSameVisible == false)
+			{
+				KonecHryVyhra ();
+			}
+
 			// Posun kuličky
 			mobjKulicka.Posunout ();
-
-			// Pohyb desky
 
 			// Test kolize desky s kuličkou
 			if (TestKolizeDeskaKulicka (mobjKulicka.rectObrys, mobjDeska.rectObrys) == true)
@@ -140,7 +167,17 @@ namespace Wallbreaker
 			
 			// Nakopírování obrázku na PictureBox
 			mobjPredniPlatno.DrawImage (mobjBtmp, 0, 0);
+
+			// Zastavení hry (prohra)
+			if (mobjKulicka.tmrStop == true)
+			{
+				tmrRedraw.Enabled = false;
+				KonecHryProhra ();
+				
+			}
 		}
+
+		
 
 		/// <summary>
 		/// Test kolize cihly a kuličky
@@ -186,6 +223,59 @@ namespace Wallbreaker
 			return true;
 		}
 
-		
+		/// <summary>
+		/// Zmáčknutí klávesy
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void Form1_KeyDown (object sender, KeyEventArgs e)
+		{
+			try
+			{
+				switch (e.KeyCode)
+				{
+					case Keys.Left:
+						mobjDeska.Doleva ();
+						mblMackam = true;
+						break;
+					case Keys.Right:
+						mobjDeska.Doprava ();
+						mblMackam = true;
+						break;
+				}
+			}
+
+			catch (Exception ex) 
+			{
+				mblMackam = false;
+			}
+		}
+
+		/// <summary>
+		/// Pustím klávesu
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		public void Form1_KeyUp (object sender, KeyEventArgs e)
+		{
+			mblMackam = false;
+		}
+
+		/// <summary>
+		/// Prohra
+		/// </summary>
+		public void KonecHryProhra()
+		{
+			MessageBox.Show ("Konec hry! Prohrál jsi.");
+		}
+
+		/// <summary>
+		/// Výhra
+		/// </summary>
+		public void KonecHryVyhra ()
+		{
+			MessageBox.Show ("Konec hry! Vyhrál jsi.");
+			tmrRedraw.Enabled = false;
+		}
 	}
 }

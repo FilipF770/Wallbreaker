@@ -60,6 +60,8 @@
 			this.Name = "Form1";
 			this.Text = "Wall Breaker";
 			this.Load += new System.EventHandler(this.Form1_Load);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
 			((System.ComponentModel.ISupportInitialize)(this.pbPlatno)).EndInit();
 			this.ResumeLayout(false);
 
